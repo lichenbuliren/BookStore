@@ -2,7 +2,7 @@
  * Created by heaven on 2015/1/14.
  */
 
-var bookStoreApp = angular.module('bookStoreApp',['ui.router']);
+var bookStoreApp = angular.module('bookStoreApp',['ui.router','BookListModule']);
 
 /**
  * 由于整个应用都会和路由打交道，所以这里把$state和$stateParams这两个对象放到$rootScope上，方便其它地方引用和注入。
@@ -25,7 +25,7 @@ bookStoreApp.config(function($stateProvider,$urlRouterProvider){
     $urlRouterProvider.otherwise('/index');
     $stateProvider.state('index',{
         url: '/index',
-        view: {
+        views: {
             '':{
                 templateUrl: 'partials/home.html'
             },
@@ -33,5 +33,24 @@ bookStoreApp.config(function($stateProvider,$urlRouterProvider){
                 templateUrl: 'partials/loginForm.html'
             }
         }
+    }).state('booklist',{
+        url: '/{bookType: [0-9]{1,4}}',
+        views: {
+            '':{
+                templateUrl: 'partials/bookList.html'
+            },
+            'booktype@booklist':{
+                templateUrl: 'partials/bookType.html'
+            },
+            'bookgrid@booklist': {
+                templateUrl: 'partials/bookGrid.html'
+            }
+        }
+    }).state('addbook',{
+        url: '/addbook',
+        templateUrl: 'partials/addBookForm.html'
+    }).state('bookdetail',{
+        url: '/bookdetail/:bookId',
+        templateUrl: 'partials/bookDetail.html'
     });
 });
