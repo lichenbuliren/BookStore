@@ -13,7 +13,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "http-server": "^0.7.4",
     "jasmine": "^2.1.1",
-    "karma": "^0.12.31",
+    "karma": "^0.12.30",
     "karma-chrome-launcher": "^0.1.7",
     "karma-coverage": "^0.2.7",
     "protractor": "^1.6.0"
