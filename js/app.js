@@ -2,7 +2,7 @@
  * Created by heaven on 2015/1/14.
  */
 
-var bookStoreApp = angular.module('bookStoreApp',['ui.router','BookListModule']);
+var bookStoreApp = angular.module('bookStoreApp',['ui.router','ngGrid','LoginFormModule','BookListModule', 'BookDetailModule']);
 
 /**
  * 由于整个应用都会和路由打交道，所以这里把$state和$stateParams这两个对象放到$rootScope上，方便其它地方引用和注入。
@@ -30,11 +30,12 @@ bookStoreApp.config(function($stateProvider,$urlRouterProvider){
                 templateUrl: 'partials/home.html'
             },
             'main@index': {
-                templateUrl: 'partials/loginForm.html'
+                templateUrl: 'partials/loginForm.html',
+                controller: 'LoginController'
             }
         }
     }).state('booklist',{
-        url: '/{bookType: [0-9]{1,4}}',
+        url: '/booklist/{bookType:[0-9]{1,4}}',
         views: {
             '':{
                 templateUrl: 'partials/bookList.html'
@@ -42,7 +43,7 @@ bookStoreApp.config(function($stateProvider,$urlRouterProvider){
             'booktype@booklist':{
                 templateUrl: 'partials/bookType.html'
             },
-            'bookgrid@booklist': {
+            'booktrid@booklist': {
                 templateUrl: 'partials/bookGrid.html'
             }
         }
