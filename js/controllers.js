@@ -26,8 +26,25 @@ loginFormModule.controller('LoginController',function($scope,$state){
             alert('密码错误，请重新输入！');
         }
         $state.go('booklist',{bookType:0});
+        //$state.go('confirm');
     };
 });
+
+loginFormModule.controller('ConfirmController',function($scope,$http,$state){
+    $http.get('../data/users.json')
+        .success(function(data){
+            console.log(data);
+            $scope.userInfo = data;
+        }).error(function(err){
+            console.log('get user.json info err ' + err);
+            return false;
+        });
+    $scope.showFormData = function(){
+        console.log($scope);
+        alert($scope.userInfo);
+    }
+});
+
 
 /**
  * 这里是书籍列表模块

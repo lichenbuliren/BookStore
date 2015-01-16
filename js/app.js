@@ -34,6 +34,17 @@ bookStoreApp.config(function($stateProvider,$urlRouterProvider){
                 controller: 'LoginController'
             }
         }
+    }).state('confirm',{
+        url: '/confirm',
+        views: {
+            '':{
+                templateUrl: 'partials/home.html'
+            },
+            'main@confirm': {
+                templateUrl: 'partials/confirmForm.html',
+                controller: 'ConfirmController'
+            }
+        }
     }).state('booklist',{
         url: '/booklist/{bookType:[0-9]{1,4}}',
         views: {

@@ -1,10 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>BootStrap CSS and AngularJS</title>
+    <link rel="stylesheet" href="../libs/bootstrap/dist/css/bootstrap.css"/>
+    <script src="../libs/angular/1.3.8/angular.min.js"></script>
+    <script src="form.js"></script>
 </head>
 <body>
-
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="panel-title">双向数据绑定</div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal" role="form" name="myForm" ng-controller="UserInfoController">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">邮箱：</label>
+                        <div class="col-md-10" ng-class="{'has-error':myForm.email.$error.required || myForm.email.$error.email}">
+                            <input name="email" class="form-control" placeholder="推荐使用QQ邮箱" type="email" ng-model="userInfo.email" required/>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="myForm.email.$error.required || myForm.email.$error.email">
+                        <div class="col-md-offset-2 col-md-10">
+                            <span class="error" ng-show="myForm.email.$error.required">Email is required</span>
+                            <span ng-show="myForm.email.$error.email">Invalid Email Address</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">密码：</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="password" placeholder="只能是数字、字母、下划线" ng-model="userInfo.password"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="userInfo.autoLogin"/>
+                                    自动登录
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" class="btn btn-primary" value="提交"/>
+                            <button class="btn btn-default" ng-click="getFormData()">获取表单数据</button>
+                            <button class="btn btn-default" ng-click="setFormData()">刷新数据</button>
+                            <button class="btn btn-default" ng-click="resetFormData()">重置表单</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
