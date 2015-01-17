@@ -10,9 +10,17 @@
          * 2：声明式注入——$inject
          */
         var myApp = angular.module('myApp',[]);
-        myApp.controller('myCtrl',['$scope',function($scope1){
-            $scope1.name="这是内联式注入";
-            console.log('这是内联式注入');
+        myApp.factory('game',function(){
+            return {
+                getName: '显示使用$injector'
+            }
+        });
+        myApp.controller('myCtrl',['$scope','$injector',function($scope,$injector){
+            console.log('显示调用$inject');
+            $injector.invoke(function(game){
+                $scope.name = game.getName;
+                console.log('game service 获得的name = ' + game.getName);
+            });
         }]);
     </script>
 </head>

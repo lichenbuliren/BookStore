@@ -10,12 +10,10 @@
          * 2：声明式注入——$inject
          */
         var myApp = angular.module('myApp',[]);
-        var myCtrl = function(myScope){
-            myScope.name = "声明式注入";
-            console.log('声明式注入');
-        };
-        myCtrl.$inject = ['$scope'];
-        myApp.controller('myCtrl',myCtrl);
+        myApp.controller('myCtrl',['$scope',function($scope1){
+            $scope1.name="这是内联式注入";
+            console.log('这是内联式注入');
+        }]);
     </script>
 </head>
 <body>
