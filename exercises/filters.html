@@ -23,8 +23,16 @@
                 {money: 200.154,name:'Patrick', age:40, gender:'boy',born:'1421319258410'},
                 {money: 200.154,name:'Samantha', age:60, gender:'girl',born:'1421319258410'}
             ];
+
+            $scope.showInfo = function(){
+                console.log('这里是绑定的事件');
+            };
             $scope.show = function(){
                 alert('my daddy is ' + $scope.name);
+            };
+
+            $scope.myalert = function(msg){
+                alert('hello ' + msg);
             };
 
             $scope.showCheck = function(){
@@ -42,6 +50,17 @@
                 return subArr;
             }
         });
+
+        myApp.directive('greeting',function(){
+            return {
+                restrict: 'EA',
+                scope:{
+                    greet: '&'
+                },
+                template: '<input type="text" ng-model="info"/>' +
+                          '<button ng-click="greet({msg:info})">点我</button>'
+            }
+        });
     </script>
 </head>
 <body ng-controller="FilterController">
@@ -51,8 +70,9 @@
         <input type="text" ng-model="age" ng-init="age=10" placeholder="filter age big then input"/>
         <ul class="example-animate-container">
             <li class="animate-repeat" ng-repeat="friend in friends | filter:q | ageFilter:age | orderBy:'name':true as results">
-                [{{$index + 1}}] {{friend.name | uppercase}} who is {{friend.age}} years old. and he has {{friend.money | number:1 | currency:"&yen;"}} money
-                and was born at {{friend.born | date: 'yyyy-MM-dd hh:mm:ss'}}
+                <p>[{{$index + 1}}] {{friend.name | uppercase}} who is {{friend.age}} years old. and he has {{friend.money | number:1 | currency:"&yen;"}} money
+                    and was born at {{friend.born | date: 'yyyy-MM-dd hh:mm:ss'}}</p>
+                <greeting greet="myalert(msg)"></greeting>
             </li>
             <li class="animate-repeat" ng-if="results.length == 0">
                 <strong>No results found...</strong>

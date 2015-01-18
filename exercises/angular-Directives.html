@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="../libs/angular/1.3.8/angular.min.js"></script>
+    <title>指令编写</title>
+    <script src="directives.js"></script>
+</head>
+<body>
+
+    <!-- 指令的几种使用方式-->
+    <hello>
+        <div>这是内部的内容，当设置transclude为true时，可以保存</div>
+    </hello>
+    <div hello></div>
+    <div class="hello"></div>
+    <!-- directive:hello -->
+
+    <div ng-controller="MyController1">
+        <loader howToLoad="loadData()"></loader>
+    </div>
+    <div ng-controller="MyController2">
+        <loader howToLoad="loadData2()"></loader>
+    </div>
+</body>
+</html>
